@@ -8,5 +8,8 @@ def convert_cat2num(df, transform_dict):
     ------
     '''
     for col in transform_dict.keys():
-        df[col] = df[col].map(transform_dict[col])
+        try:
+            df[col] = df[col].map(transform_dict[col])
+        except:
+            continue
     return df
