@@ -33,7 +33,7 @@ def sklearn_binary_classification(X_train, y_train, scoring = 'accuracy'):
     names = []
     for name, model in models:
         kfold = KFold(n_splits=10, random_state=seed)
-        cv_results = cross_val_score(model, X_train, y_train, cv=kfold, scoring=scoring)
+        cv_results = cross_val_score(model, X_train, y_train, cv = kfold, scoring = scoring)
         results.append(cv_results)
         names.append(name)
         msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
@@ -41,6 +41,8 @@ def sklearn_binary_classification(X_train, y_train, scoring = 'accuracy'):
     return results, names
     
 def boxplot_binary_classification(results, names):
+    import matplotlib.pyplot as plt
+    
     # boxplot algorithm comparison
     fig = plt.figure()
     fig.suptitle('Algorithm Comparison')
@@ -48,3 +50,21 @@ def boxplot_binary_classification(results, names):
     plt.boxplot(results)
     ax.set_xticklabels(names)
     plt.show()
+
+def h2oautoml_binary_classification(X_train, y_train, X_test, y_test, target_col):
+    import h2o
+    from h2o.automl import H2OAutoML
+    
+    df_train = X_train.copy()
+    df_train[target_col] = y_train.values
+    df_test = X_test.copy()
+    df_test[target_col] = y_test.values
+    
+    htrain = h2o.H2OFrame(df_train)
+    htest = h2o.H2OFrame(df_test)
+    htrain[target_col] = htrain[target_col].asfactor()
+    htest[target_col] = htest[target_col].asfactor()
+    
+    aml = H2OAutoML(max_models = 300, seed=1)
+    aml.train(x = list(X_train.columns), y = 'STATUS', training_frame = htrain, validation_frame = htest)
+    return aml
