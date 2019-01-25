@@ -1,4 +1,12 @@
 def sklearn_binary_classification(X_train, y_train, scoring = 'accuracy'):
+    '''
+    AIM    -> First 'screening' for binary classification prediction using cross validation for several in sklearn
+     
+    INPUT  -> X_train, y_train
+    
+    OUTPUT -> evaluation scoring for each model
+    ------
+    '''
     from sklearn.model_selection import KFold, cross_val_score
     
     from sklearn.naive_bayes import BernoulliNB, GaussianNB
@@ -41,6 +49,14 @@ def sklearn_binary_classification(X_train, y_train, scoring = 'accuracy'):
     return results, names
     
 def boxplot_binary_classification(results, names):
+    '''
+    AIM    -> Boxplot for evaluating model performance
+     
+    INPUT  -> results : list of array resulted from cross validation output; names : name of model used
+    
+    OUTPUT -> boxplot for each model
+    ------
+    '''
     import matplotlib.pyplot as plt
     
     # boxplot algorithm comparison
@@ -52,6 +68,14 @@ def boxplot_binary_classification(results, names):
     plt.show()
 
 def h2oautoml_binary_classification(X_train, y_train, X_test, y_test, target_col):
+    '''
+    AIM    -> Performing H2O automl
+     
+    INPUT  -> X_train, y_train, X_test, y_test, target_col = target column
+    
+    OUTPUT -> Best model according to automl
+    ------
+    '''
     import h2o
     from h2o.automl import H2OAutoML
     
