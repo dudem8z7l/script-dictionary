@@ -12,4 +12,4 @@ def train_test_split_and_scaled_num_col(df_model, input_cat_col, input_num_col, 
     X_train[input_num_col] = scaler.fit_transform(X_train[input_num_col])
     # only transform on test dataset
     X_test[input_num_col] = scaler.transform(X_test[input_num_col])
-    return scaler, X_train, X_test
+    return scaler, X_train, X_test, y_train, y_test
