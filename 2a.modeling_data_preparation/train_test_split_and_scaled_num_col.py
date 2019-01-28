@@ -1,9 +1,9 @@
-def train_test_split_and_scaled_num_col(df_model, input_cat_col, input_num_col, target_col):
+def train_test_split_and_scaled_num_col(df_model, input_cat_col, input_num_col, target_df):
     from sklearn import preprocessing
     from sklearn.model_selection import train_test_split
 
     #train test split
-    X_train, X_test, y_train, y_test = train_test_split(df_model[input_cat_col + input_num_col], df[target_col], 
+    X_train, X_test, y_train, y_test = train_test_split(df_model[input_cat_col + input_num_col], target_df, 
                                                         test_size = 0.4, random_state = 1)
 
     # min max scaled for numerical columns
