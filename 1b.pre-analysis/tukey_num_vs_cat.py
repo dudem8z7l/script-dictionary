@@ -12,7 +12,12 @@ def tukey_num_vs_cat(df, input_num_col, target_cat_col):
         tukey = pairwise_tukeyhsd(endog = df[col],    
                                   groups = df[target_cat_col],
                                   alpha = 0.05)
-        tukey.plot_simultaneous(xlabel = col)                      
-        print("===" + col +"===")
-        print(tukey.summary())
-        print("\n")
+        if len(df[target_cat_col].unique()) > 2:
+            tukey.plot_simultaneous(xlabel = col)                      
+            print("===" + col +"===")
+            print(tukey.summary())
+            print("\n")
+        else:
+            print("===" + col +"===")
+            print(tukey.summary())
+            print("\n")
