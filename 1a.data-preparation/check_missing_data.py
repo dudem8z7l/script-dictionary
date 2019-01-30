@@ -1,4 +1,4 @@
-def check_missing_data(df):
+def check_missing_data(data):
     '''
     AIM    -> Checking missing data
      
