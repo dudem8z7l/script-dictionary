@@ -1,4 +1,12 @@
 def plot_stats(df, feature, target_col, label_rotation=False, horizontal_layout=True):
+    '''
+    AIM    -> Plot selected feature in comparison with rare target class
+     
+    INPUT  -> df, selected feature, target column
+    
+    OUTPUT -> plot
+    ------
+    '''
     temp = df[feature].value_counts()
     df1 = pd.DataFrame({feature: temp.index, 'Number of records': temp.values})
 
