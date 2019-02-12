@@ -13,7 +13,7 @@ def sklearn_binary_classification(X_train, y_train, scoring = 'accuracy'):
     from sklearn.tree import DecisionTreeClassifier, ExtraTreeClassifier
     from sklearn.neighbors import KNeighborsClassifier
     from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, GradientBoostingClassifier
-    from sklearn.svm import LinearSVC
+    from sklearn.svm import LinearSVC, SVM
     from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
     from sklearn.neural_network import MLPClassifier
     from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
